@@ -3,7 +3,7 @@ let certNo = 0;
 certificationsContainer = document.getElementsByClassName('awards-container');
 certificationDictionary = 
 {
-    "2024" : [["Edusave Merit Bursary", "Awarded to students who are within the top 25% of their school's level and course in terms of academic performance, and have demonstrated good conduct."], ["Professional Scrum Master I", "The PSM I certification demonstrates the knowledge of the Scrum framework, the Scrum Master accountabilities and how to apply Scrum."]], 
+    "2024" : [["Edusave Merit Bursary", "Awarded to students who are within the top 25% of their school's level and course in terms of academic performance, and have demonstrated good conduct."], ["Professional Scrum Master I", "The PSM I certification demonstrates the knowledge of the Scrum framework, the Scrum Master accountabilities and how to apply Scrum."], ["Career Essentials in Software Development<br> by Microsoft and Linked In", "Career Essentials in Software Development demonstrates my understanding of the skills needed for a career in software development."]], 
     "2023" : [["Director's List - April Semester 2023", "Awarded for excellent academic performance for the Diploma in Information Technology."], ["Scientific Computing With Python", "Awarded for completing the Scientific Computing With Python video course on FreeCodeCamp."]], 
     "2022" : [["Edusave Character Award", "Awarded to up to 2% of students in their school who have demonstrated outstanding personal qualities through their behaviour and actions."], ["Edusave Good Progress Award", "Awarded to students within the top 10% of their school's level in terms of academic performance and have demonstrated good conduct."]]
 };

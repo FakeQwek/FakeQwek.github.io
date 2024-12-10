@@ -3,9 +3,9 @@ let certNo = 0;
 certificationsContainer = document.getElementsByClassName('awards-container');
 certificationDictionary = 
 {
-    "2024" : [["Edusave Merit Bursary", "Awarded to students who are within the top 25% of their school's level and course in terms of academic performance, and have demonstrated good conduct."], ["Professional Scrum Master I", "The PSM I certification demonstrates the knowledge of the Scrum framework, the Scrum Master accountabilities and how to apply Scrum."]], 
-    "2023" : [["Director's List - April Semester 2023", "Awarded for excellent academic performance for the Diploma in Information Technology."], ["Scientific Computing With Python", "Awarded for completing the Scientific Computing With Python video course on FreeCodeCamp."]], 
-    "2022" : [["Edusave Character Award", "Awarded to up to 2% of students in their school who have demonstrated outstanding personal qualities through their behaviour and actions."], ["Edusave Good Progress Award", "Awarded to students within the top 10% of their school's level in terms of academic performance and have demonstrated good conduct."]]
+    "2024" : [["Ngee Ann Polytechnic - Diploma In Information Technology (April 2023 - Present)", "Awarded to students who are within the top 25% of their school's level and course in terms of academic performance, and have demonstrated good conduct."], ["Overflow - Publicity Lead (March 2024 - Present)", "The PSM I certification demonstrates the knowledge of the Scrum framework, the Scrum Master accountabilities and how to apply Scrum."]], 
+    "2023" : [["Masoglobal Pte Ltd - Media Production Intern (Feb 2023 - March 2023)", "Awarded for excellent academic performance for the Diploma in Information Technology."], ["Overflow - Workgroup (Oct 2023 - March 2024)", "Awarded for excellent academic performance for the Diploma in Information Technology."]], 
+    "2022" : [["Photography and Digital Media Club - President (Feb 2020 - Jan 2022)", "Awarded to up to 2% of students in their school who have demonstrated outstanding personal qualities through their behaviour and actions."]]
 };
 
 for(i = 0; i < certificationsContainer.length; i++) {
@@ -22,6 +22,7 @@ for(i = 0; i < certificationsContainer.length; i++) {
 
 //Add event listeners to certifications
 let timelineSection = document.getElementById("timeline-section");
+/*
 timelineSection.addEventListener('click', function() {
     yearContainers = document.getElementsByClassName('year-container');
     
@@ -49,4 +50,4 @@ timelineSection.addEventListener('click', function() {
         },280)
     }
 })
-
+*/
