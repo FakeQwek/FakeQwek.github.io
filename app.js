@@ -5,9 +5,9 @@ import dotenv from "dotenv";
 const app = express();
 dotenv.config();
 app.use(express.json());
-app.use("/skills/", routes)
+app.use("/skill/", routes)
 
-mongoose.connect(`mongodb+srv://${process.env.MONGOCRED}@database.i7urz.mongodb.net/?retryWrites=true&w=majority&appName=Database`).then(
+mongoose.connect(`mongodb+srv://${process.env.MONGOCRED}@database.i7urz.mongodb.net/Portfolio?retryWrites=true&w=majority&appName=Database`).then(
     () => {
         console.log("Connected to MongoDB!");
         app.listen(3000, 'localhost', () => {

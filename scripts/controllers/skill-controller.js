@@ -1,8 +1,9 @@
-import Skill from "../models/skill.js";
+import Skills from "../models/skill.js";
 
 export const getSkills = async (req, res) => {
     try {
-        const skills = await Skill.find();
+        const skills = await Skills.find();
+        console.log(skills);
         res.status(200).json({success : true, data: skills});
     }
     catch (error) {
@@ -11,4 +12,3 @@ export const getSkills = async (req, res) => {
    
 }
 
-export default getSkills;  
