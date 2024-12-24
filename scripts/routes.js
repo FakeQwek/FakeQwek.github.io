@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import {getSkills} from "../scripts/controllers/skill-controller.js";
+import {getSkills} from "./controllers/skill-controller.js";
 
 router.get("/skills", getSkills);
 
