@@ -1,25 +1,66 @@
-//Populate certifications
-let certNo = 0;
-certificationsContainer = document.getElementsByClassName('awards-container');
-certificationDictionary = 
-{
-    "2024" : [["Edusave Merit Bursary", "Awarded to students who are within the top 25% of their school's level and course in terms of academic performance, and have demonstrated good conduct."], ["Professional Scrum Master I", "The PSM I certification demonstrates the knowledge of the Scrum framework, the Scrum Master accountabilities and how to apply Scrum."], ["Career Essentials in Software Development<br> by Microsoft and Linked In", "Career Essentials in Software Development demonstrates my understanding of the skills needed for a career in software development."]], 
-    "2023" : [["Director's List - April Semester 2023", "Awarded for excellent academic performance for the Diploma in Information Technology."], ["Scientific Computing With Python", "Awarded for completing the Scientific Computing With Python video course on FreeCodeCamp."]], 
-    "2022" : [["Edusave Character Award", "Awarded to up to 2% of students in their school who have demonstrated outstanding personal qualities through their behaviour and actions."], ["Edusave Good Progress Award", "Awarded to students within the top 10% of their school's level in terms of academic performance and have demonstrated good conduct."]]
-};
+const url = "http://localhost:3000/"
+let certificationData = {};
+let timelineSection = document.getElementById("timeline-section");
+populateSkills();
+async function populateSkills() {
+    try {
+        const response = await fetch(url + "certification", {
+            method: "GET",
+        })
+        .then((response) => response.json())
+        .then((certification) => {
+            //Inserts data in sorted dictionary order first
 
-for(i = 0; i < certificationsContainer.length; i++) {
-    let certifications = certificationsContainer[i].className.split(' ');
-    let certName = certificationDictionary[certifications[1]];
-    for (x = 0; x < certName.length; x++) {
-        certificationsContainer[i].innerHTML += `<h3 class="award-text" id="cert-${certNo}">${certName[x][0]}</h3>`;
-        let currentCert = document.getElementById(`cert-${certNo}`);
-        currentCert.setAttribute("data-certName", certName[x][0]);
-        currentCert.setAttribute("data-year", certifications[1]);
-        certNo +=1;
+            for (x in certification.data) {
+                
+                let title = certification.data[x]["Title"];
+                let desc = certification.data[x]["Description"];
+                let year = certification.data[x]["Year"];
+
+                if (!(year in certificationData)) {
+                    certificationData[year] = [[title, desc]];
+                }
+                else {
+                    certificationData[year].push([title, desc]);
+                }
+            }
+ 
+            //Goes through data, then inserts each year with the latest year first, before inserting the awards for each year
+
+            let orderedYears = Object.keys(certificationData).reverse();
+            let fadingClass = "";
+            for(i = 0; i < orderedYears.length; i++) {
+                if(i == orderedYears.length-1) {
+                    fadingClass="fading-line";
+                }
+                let year = orderedYears[i];
+                   let yearContainer = 
+                   `
+                    <div class="year-container">
+                        <h1 class="year-title">${year}</h1>
+                        <div class="timeline-container">
+                            <div class="timeline-circle"></div>
+                            <div class="line ${fadingClass}"></div>
+                        </div>
+                        <div class="awards-container ${year}">
+                        </div>
+                    </div>
+                   `
+                   timelineSection.insertAdjacentHTML("beforeend", yearContainer)
+                   let awards = document.getElementsByClassName(year);
+                for(entry in certificationData[year]) {
+                    let title = certificationData[year][entry][0];
+                    awards[0].insertAdjacentHTML("beforeend",  `<h3 class="award-text" id="title">${title}</h3>`)
+                }
+            }
+        })        
+    }
+    catch (error) {
+        console.log(error);
     }
 }
 
+/*
 //Add event listeners to certifications
 let timelineSection = document.getElementById("timeline-section");
 timelineSection.addEventListener('click', function() {
@@ -49,4 +90,4 @@ timelineSection.addEventListener('click', function() {
         },280)
     }
 })
-
+*/
