@@ -1,7 +1,28 @@
 const url = "http://localhost:3000/"
 let experienceData = {};
 let timelineSection = document.getElementById("timeline-section");
+let modal = document.getElementById("experience-modal");
+let closeButton = document.getElementById("close-button");
+let modalTitle = document.getElementById("modal-title");
+let modalDescription = document.getElementById("modal-text");
+let modalBox = document.querySelector(".modal-content");
 populateSkills();
+addListener();
+
+closeButton.addEventListener('click', () => {
+    modal.classList.remove("show-popup");
+    modal.classList.add("close-popup");
+  
+
+});
+
+modal.addEventListener('click', () => {
+    if(event.target.id == "certification-modal") {
+        modal.classList.remove("show-popup");
+        modal.classList.add("close-popup");
+    }
+});
+
 async function populateSkills() {
     try {
         const response = await fetch(url + "experience", {
@@ -42,7 +63,7 @@ async function populateSkills() {
                             <div class="timeline-circle"></div>
                             <div class="line ${fadingClass}"></div>
                         </div>
-                        <div class="awards-container ${year}">
+                        <div class="awards-container ${year}"> 
                         </div>
                     </div>
                    `
@@ -50,7 +71,7 @@ async function populateSkills() {
                    let awards = document.getElementsByClassName(year);
                 for(entry in experienceData[year]) {
                     let title = experienceData[year][entry][0];
-                    awards[0].insertAdjacentHTML("beforeend",  `<h3 class="award-text" id="title">${title}</h3>`)
+                    awards[0].insertAdjacentHTML("beforeend",  `<h3 class="award-text" id="${title}">${title}</h3>`)
                 }
             }
         })        
@@ -60,35 +81,33 @@ async function populateSkills() {
     }
 }
 
+async function addListener() {
+    timelineSection.addEventListener('click', async function() {
+        if(event.target.className == "award-text") {
+            let title = event.target.id;
+            console.log(title);
+            try {
+                const response = await fetch(url + `experience/${title}`, {
+                    method: "GET",
+                })
+                .then((response) => response.json())
+                .then((experience) => {
 
-/*
-//Add event listeners to certifications
-
-timelineSection.addEventListener('click', function() {
-    yearContainers = document.getElementsByClassName('year-container');
-    
-    let previousInfo = document.querySelector(".information-popup");
-   
-    if(event.target.className == "award-text") {
-        if(previousInfo) {
-            previousInfo.remove();
-        }
-        let certName = event.target.getAttribute("data-certName");
-        let year = event.target.getAttribute("data-year");
-        let certifications = certificationDictionary[year];
-
-        for(i = 0; i < certifications.length; i++) {
-            if(certifications[i][0] == certName) {
-                event.target.parentNode.parentNode.innerHTML += `<div class="information-popup"><h3>${certName}</h3><p>${certifications[i][1]}</p></div>`;
+                    let desc = experience.data["Description"];
+                    modal.classList.remove("close-popup");
+                    modal.classList.add("show-popup");
+                    modalTitle.innerText = title;
+                    modalDescription.innerText = desc;
+                    
+                })
+            }
+            catch(error) {
+                console.log(error);
             }
         }
-    }
-    else if (previousInfo) {
-        previousInfo.classList.add("hide-animation");
-        setTimeout(() => {
-            let previousInfo = document.querySelector(".information-popup");
-            previousInfo.remove();
-        },280)
-    }
-})
-*/
+
+
+
+    })
+}
+

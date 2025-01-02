@@ -11,3 +11,15 @@ export const getExperience = async (req, res) => {
    
 }
 
+export const getExperienceById = async (req, res) => {
+    try {
+        let title = req.params['title'];
+        const experience = await Experiences.findOne({Title: title});
+        res.status(200).json({success: true, data: experience});
+    }
+    catch(error) {
+        res.status(500).json({success: false, message: "Server Error"});
+    }
+
+}
+
