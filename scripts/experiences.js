@@ -17,7 +17,7 @@ closeButton.addEventListener('click', () => {
 });
 
 modal.addEventListener('click', () => {
-    if(event.target.id == "certification-modal") {
+    if(event.target.id == "experience-modal") {
         modal.classList.remove("show-popup");
         modal.classList.add("close-popup");
     }
