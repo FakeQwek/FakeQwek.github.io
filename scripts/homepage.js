@@ -15,7 +15,14 @@ const images = {
     "TwitchStats" : "./images/twitchstats-thumbnail.PNG",
     "Ice Cream Management System" : "./images/prgassignment2-menu.PNG",
     "Socialise" : "./images/socialise-thumbnail.png",
-    "Jeopardy" : "./images/jeopardy-play.PNG"
+    "Jeopardy" : "./images/jeopardy-play.PNG",
+    "React" : "./images/react-icon.png",
+    "Figma" : "./images/figma-icon.png",
+    "Data Structures and Algorithms" : "./images/dsa-icon.png",
+    "Software Design Patterns" : "./images/sdp-icon.png",
+    "OCBC UX System" : "./images/fsdp-thumbnail.png",
+    "Sustainibbles" : "./images/sustainibbles-thumbnail.png"
+
 };
 const url = "http://localhost:3000/";
 
@@ -33,11 +40,20 @@ async function populateSkills() {
                 let title = skill.data[x]["title"];
                 let desc = skill.data[x]["Description"];
                 let imgUrl = images[title];
+                let width = "90px";
+                let height = "90px";
+                if(title == "React" ) {
+                    width = "105px";
+                }
+                else if (title == "Software Design Patterns") {
+                    width = "115px";
+                    height = "100px";
+                }
                 console.log(imgUrl);
                 skillsContainer.insertAdjacentHTML("beforeend", 
                     `
                         <div class= "skill-box">
-                            <img src="${imgUrl}" width="90px" height ="90px" class="skill-image">
+                            <img src="${imgUrl}" width="${width}" height ="${height}" class="skill-image">
                             <div class="skill-desc-box">
                                 <h2 class="skill-title">${title}</h2>
                                 <p class="skill-paragraph">${desc}</p>
