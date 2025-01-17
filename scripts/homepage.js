@@ -1,6 +1,8 @@
 
 const projectContainer = document.getElementById("projects-container");
 const skillsContainer = document.getElementById("skills-container");
+
+
 const images = {
     "Visual Paradigm" : "./images/VP-icon.png",
     "HTML & CSS" : "./images/htmlcss-icon.png",
@@ -25,6 +27,8 @@ const images = {
 
 };
 const url = "http://localhost:3000/";
+
+
 
 populateSkills();
 populateProjects();
@@ -68,7 +72,7 @@ async function populateSkills() {
         console.log(error);
     }
 }
-
+const carousel = document.getElementById("projects-carousel");
 async function populateProjects() {
     try {
         const response = await fetch(url + "project", {
@@ -81,7 +85,7 @@ async function populateProjects() {
                 let desc = project.data[x]["Description"];
                 let imgUrl = images[title];
                 console.log(imgUrl);
-                projectContainer.insertAdjacentHTML("beforeend", 
+                carousel.insertAdjacentHTML("beforeend", 
                     `
                     <div class="project-box">
                         <h2>${title}</h2>
@@ -91,14 +95,37 @@ async function populateProjects() {
                         </div>
                     </div>
                     `
-
                 )
             }
+            launchCarousel();
+            
         })
         
     }
     catch (error) {
         console.log(error);
+ 
     }
+    function launchCarousel() {
+        const projects = document.querySelectorAll(".project-box");
+        let projectIndex = -1, intervalId;
+    
+        const autoSlide = () => {
+            intervalId = setInterval(() => slideImage(++projectIndex), 3000);
+        }
+    
+        autoSlide();
+        const positions = [0, -16, -33, -49, 50.5, 34, 17];
+        const slideImage = () => {
+            
+            projectIndex = projectIndex == 7? 0 : projectIndex;
+            let transform = positions[projectIndex];
+            console.log(projectIndex);
+            // -16%, -33%, -49%, 50.5%, 34%, 17%,
+            carousel.style.transform = `translate(${transform}%)`;
+        };
+    }
+    
 
+    
 }
