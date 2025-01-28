@@ -23,7 +23,8 @@ const images = {
     "Data Structures and Algorithms" : "./images/dsa-icon.png",
     "Software Design Patterns" : "./images/sdp-icon.png",
     "OCBC UX System" : "./images/fsdp-thumbnail.png",
-    "Sustainibbles" : "./images/sustainibbles-thumbnail.png"
+    "Sustainibbles" : "./images/sustainibbles-thumbnail.png",
+    "SunsetSG" : "./images/sunset-thumbnail.PNG"
 
 };
 const url = "http://localhost:3000/";
@@ -115,10 +116,10 @@ async function populateProjects() {
         }
     
         autoSlide();
-        const positions = [0, -16, -33, -49, 50.5, 34, 17];
+        const positions = [-7.25, -22, -36.5, -51.5, 52, 37, 22.5, 7.5];
         const slideImage = () => {
             
-            projectIndex = projectIndex == 7? 0 : projectIndex;
+            projectIndex = projectIndex == 8? 0 : projectIndex;
             let transform = positions[projectIndex];
             console.log(projectIndex);
             // -16%, -33%, -49%, 50.5%, 34%, 17%,
